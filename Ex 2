@@ -1,0 +1,41 @@
+using System;
+using System.IO;
+
+class Program
+{
+    static void Main()
+    {
+        string filePath = @"C:\Users\User\Desktop\С#\f.txt";
+
+        double sum = 0;
+        double dob = 1;
+        double sumsqr = 0;
+        double summod = 0;
+        double dobsqr = 1;
+        double lastcomp = 0;
+
+        using (StreamReader sr = new StreamReader(filePath))
+        {
+            string content = sr.ReadToEnd();
+            string[] numbers = content.Split(' ');
+
+            foreach (string number in numbers)
+            {
+                sum += double.Parse(number);
+                dob *= double.Parse(number);
+                sumsqr += Math.Pow(double.Parse(number), 2);
+            }
+
+            summod = Math.Abs(sum);
+            dobsqr = Math.Pow(dob, 2);
+            lastcomp = double.Parse(numbers[numbers.Length - 1]);
+        }
+
+        Console.WriteLine("суму компонент файлу f: " + sum);
+        Console.WriteLine("добуток компонент файлу f: " + dob);
+        Console.WriteLine("сума квадратів компонент файлу f: " + sumsqr);
+        Console.WriteLine("модуль суми компонент файлу f: " + summod);
+        Console.WriteLine("квадрат добутку компонент файлу f: " + dobsqr);
+        Console.WriteLine("останню компоненту файлу: " + lastcomp);
+    }
+}
